@@ -1,11 +1,26 @@
 import { Text, Image, View, StyleSheet, TouchableOpacity } from "react-native";
+import { useAppDispatch } from "../hooks/redux";
 import { IRecipe } from "../types/interface";
+import { recipesSlice } from "../reducers/userSlice";
 
-const RecipeItem = ({ item }: { item: IRecipe }) => {
+const RecipeItem = ({
+  item,
+  navigation,
+}: {
+  item: IRecipe;
+  navigation: any;
+}) => {
   const { recipe } = item;
 
+  const dispatch = useAppDispatch();
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        dispatch(recipesSlice.actions.setSingleRecipe(recipe));
+        navigation.navigate("SingleRecipe");
+      }}
+    >
       <View style={styles.container}>
         <View style={styles.leftBlock}>
           <Image
@@ -19,11 +34,11 @@ const RecipeItem = ({ item }: { item: IRecipe }) => {
         </View>
         <View style={styles.rightBlock}>
           <Text style={styles.header}>
-            {recipe?.label.length > 20
-              ? `${recipe?.label.slice(0, 20)}...`
-              : recipe?.label}
+            {recipe.label.length > 20
+              ? `${recipe.label.slice(0, 20)}...`
+              : recipe.label}
           </Text>
-          <Text>{recipe.calories}</Text>
+          <Text>Calories: {recipe.calories.toFixed()}</Text>
         </View>
       </View>
     </TouchableOpacity>

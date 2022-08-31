@@ -1,26 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IRecipe } from "../types/interface";
+import { IRecipe, RecipeItem } from "../types/interface";
 
 interface UserState {
-  count: number;
   isLoading: boolean;
   error: any;
   recipes: IRecipe[];
+  singleRecipe: RecipeItem | null;
 }
 
 const initialState: UserState = {
-  count: 0,
   isLoading: false,
   error: "",
   recipes: [],
+  singleRecipe: null,
 };
 
 export const recipesSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    increment(state, action: PayloadAction<number>) {
-      state.count += action.payload;
+    setSingleRecipe(state, action: PayloadAction<RecipeItem>) {
+      state.singleRecipe = action.payload;
     },
     recipeFetching(state) {
       state.isLoading = true;

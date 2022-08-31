@@ -4,14 +4,17 @@ import { IRecipe } from "../types/interface";
 import Loading from "./Loading";
 import RecipeItem from "./RecipeItem";
 
-const RecipeList = () => {
+type renderProps = {
+  item: IRecipe;
+};
+
+const RecipeList = ({ navigation }: any) => {
   const { recipes, isLoading } = useAppSelector(
     (state) => state.recipesReducer
   );
 
-  const renderList = (item: any) => {
-    // const {} = item;
-    return <RecipeItem item={item.item}></RecipeItem>;
+  const renderList = (item: renderProps) => {
+    return <RecipeItem navigation={navigation} item={item.item}></RecipeItem>;
   };
 
   if (isLoading) {

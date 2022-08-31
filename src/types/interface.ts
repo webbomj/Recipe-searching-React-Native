@@ -26,4 +26,4 @@ interface RecipeImg {
   height: number;
 }
 
-export { IRecipe };
+export { IRecipe, RecipeItem };
