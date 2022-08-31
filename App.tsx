@@ -1,16 +1,13 @@
-import { StyleSheet, View, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { setupStore } from "./src/store/store";
-import { Counter } from "./src/components/counter";
+import { Navigation } from "./src/screens/Navigation";
 const store = setupStore();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar></StatusBar>
-        <Counter></Counter>
-      </View>
+      <Navigation />
     </Provider>
   );
 }

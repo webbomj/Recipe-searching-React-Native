@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IRecipe } from "../types/interface";
 
 interface UserState {
   count: number;
   isLoading: boolean;
   error: any;
-  recipes: any;
+  recipes: IRecipe[];
 }
 
 const initialState: UserState = {
   count: 0,
   isLoading: false,
   error: "",
-  recipes: {},
+  recipes: [],
 };
 
 export const recipesSlice = createSlice({
