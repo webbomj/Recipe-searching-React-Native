@@ -3,7 +3,7 @@ import { IRecipe, RecipeItem } from "../types/interface";
 
 interface UserState {
   isLoading: boolean;
-  error: any;
+  error: string;
   recipes: IRecipe[];
   singleRecipe: RecipeItem | null;
 }
@@ -26,13 +26,13 @@ export const recipesSlice = createSlice({
       state.isLoading = true;
     },
 
-    recipeFetchingSuccess(state, action: PayloadAction<any>) {
+    recipeFetchingSuccess(state, action: PayloadAction<IRecipe[]>) {
       state.isLoading = false;
       state.error = "";
       state.recipes = action.payload;
     },
 
-    recipeFetchingError(state, action: PayloadAction<any>) {
+    recipeFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
     },
